@@ -76,7 +76,6 @@ function App() {
                   : `${Math.round(weatherData.main.temp)}°C`
                 }
               </p>
-              <h1>{weatherData.weather[0].main}</h1>
             </div>
             
           </>
