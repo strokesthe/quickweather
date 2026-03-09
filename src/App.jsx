@@ -88,8 +88,9 @@ const getClothingIcon = (temp) => {
           </>
         )}
       </div>
+      <p>&copy; {new Date().getFullYear()} QuickWeather</p>
     </div>
   )
 }
 
-export default App
+export default Appgit
