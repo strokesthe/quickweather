@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import './App.css'
+import shirtIcon from './shirt.png'
+import jacketIcon from './jacket.png'
+import winterJacketIcon from './winterJacket.png'
+import rainJacket from './rainJacket.png'
 
 function App() {
   const [cityName, setCityName] = useState("")
@@ -7,6 +11,13 @@ function App() {
 
   const handleCityNameInput = (e) => {
     setCityName(e.target.value)
+  }
+
+  const weatherIcons = {
+    Clear: shirtIcon,
+    Clouds: jacketIcon,
+    Snow: winterJacketIcon,
+    Rain: rainJacket
   }
 
   const fetchOpenWeatherApi = () => {
@@ -32,9 +43,18 @@ function App() {
       <div>
         {weatherData?.main && (
           <>
-            <h1>{weatherData.name}</h1>
+            <p>
+              <img
+                src={weatherIcons[weatherData.weather[0].main]}
+                className='weather-icon'
+                alt={weatherData.weather[0].main}
+              />
+            </p>
             <p>{Math.round(weatherData.main.temp)}°C</p>
             <p>{Math.round(weatherData.main.feels_like)}°C gefühlte Temperatur</p>
+            <p>{weatherData.weather[0].main}</p>
+
+
           </>
         )}
       </div>
