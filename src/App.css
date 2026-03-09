@@ -73,3 +73,10 @@
   text-size-adjust: 20px;
 
 }
+
+.app-logo {
+  width: 400px;
+  display: block;
+  margin: auto;
+  border-radius: 20px;
+}
