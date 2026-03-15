@@ -7,6 +7,7 @@ function App() {
   const [cityName, setCityName] = useState("")
   const [weatherData, setWeatherData] = useState(null)
   const [isHovering, setIsHovering] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleCityNameInput = (e) => {
     setCityName(e.target.value)
@@ -21,11 +22,22 @@ function App() {
   const fetchOpenWeatherApi = () => {
     const apiKey = "9af04edca48732aeccdff09b5b7406a3";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+    setError(null)
 
     fetch(url)
-      .then(response => response.json())
-      .then(responseResult => setWeatherData(responseResult))
-      .catch(err => console.error("API Fehler:", err))
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Stadt nicht gefunden");
+        }
+        return response.json();
+      })
+      .then(responseResult => {
+        setWeatherData(responseResult);
+      })
+      .catch(err => {
+        setWeatherData(null); 
+        setError(err.message);
+      });
   }
 
   return (
@@ -37,18 +49,19 @@ function App() {
         onChange={handleCityNameInput}
       />
       <button onClick={fetchOpenWeatherApi}>Suchen</button>
+      {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
 
       <div className='weather-container'>
         {weatherData?.main && (
           <>
             <div className='tile'>
-              <img 
+              <img
                 onClick={() => { weatherData.weather[0].main === "Clear" && alert("Pack deine Sonnenbrille ein!") }}
-                src={weatherIcons[weatherData.weather[0].main]} 
+                src={weatherIcons[weatherData.weather[0].main]}
                 alt="Wetter"
               />
             </div>
-            
+
             <div className='tile'>
               <img src={icons.wind} alt="Wind" />
               {(weatherData.wind.speed * 3.6).toFixed(1)} km/h
