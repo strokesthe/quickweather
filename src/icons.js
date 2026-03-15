@@ -20,7 +20,7 @@ export const icons = {
   sweater: sweaterIcon,
   rain: rainIcon,
   logo: appLogo,
-  wind: windIcon
+  wind: windIcon,
 };
 
 export const getClothingIcon = (temp) => {
