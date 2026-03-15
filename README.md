@@ -5,6 +5,7 @@
 # React Weather App
 
 Simple weather application built with React using the OpenWeather API.
+The purpose of this app is to give the user just the simple weather informationen that are needed without clutter or ads
 
 
 ## How to install
