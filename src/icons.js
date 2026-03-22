@@ -8,7 +8,7 @@ import sunIcon from './sun.svg'
 import cloudsIcon from './clouds.svg'
 import sweaterIcon from './sweater.png'
 import rainIcon from './rain.svg'
-import appLogo from './Logo.jpeg'
+import appLogo from './Logo.png'
 import windIcon from './wind.svg'
 
 export const icons = {
